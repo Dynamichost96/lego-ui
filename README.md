@@ -17,10 +17,10 @@ Runs natively on the machine (should mitigate some issues that could arise from 
 Well-defined design template (reducing amount of work needed to design the UX)
 
 We want to implement the following tasks during this project:
-Provide option to save dns api credentials using the keyring (if keyring exists)
-Put the certificate into the local keyring or export it to the local file system if no keyring exists
-Autoconfigure the host file using electra, if a certificate is locally used
-Show a warning if a certificate should be renewed
-Give the user the option to renew their certificates
+- Provide option to save dns api credentials using the keyring (if keyring exists)
+- Put the certificate into the local keyring or export it to the local file system if no keyring exists
+- Autoconfigure the host file using electra, if a certificate is locally used
+- Show a warning if a certificate should be renewed
+- Give the user the option to renew their certificates
 
 
