@@ -14,7 +14,7 @@ One step to make this process simpler is, to trade the complex web configuration
 ## Implementation
 We want to implement the application using the go programming language, using the [go-acme/lego](https://github.com/go-acme/lego) library and
 [fyne-io/fyne](https://github.com/fyne-io/fyne) as our gui library.
-Lego provides a go library to make DNS challanges out of the box to loads of different DNS providers, whihc should cover 90% of the userbase.
+Lego provides a go library to make DNS challanges out of the box to loads of different DNS providers, which should cover 90% of the userbase.
 We chose this as our gui library because it
 - Runs natively on the machine (which means better integration into system features like keyring and the file system)
 - Well-defined design template (reducing amount of work needed to design the UX)
