@@ -1,6 +1,9 @@
 package view
 
 import (
+	"io"
+	"fmt"
+	"bufio"
 	"fyne.io/fyne/v2/layout"
 	"image/color"
 
@@ -40,7 +43,27 @@ func (mw MainWindow) Show(a fyne.App) {
 	logOut.Alignment = fyne.TextAlignLeading
 
 	logOutBox := widget.NewMultiLineEntry()
-	mw.services.UserLog.Write = func(msg string) { logOutBox.SetText(logOutBox.Text + msg + "\n") } 
+
+	//Setting up Log
+	reader, writer := io.Pipe()
+	mw.services.UserLog.Writer = writer
+	go func() {
+		r := bufio.NewReaderSize(reader, 4*1024)
+			line, isPrefix, err := r.ReadLine()
+			for err == nil && !isPrefix {
+				s := string(line)
+				logOutBox.SetText(logOutBox.Text + s + "\n")
+				line, isPrefix, err = r.ReadLine()
+			}
+			if isPrefix {
+				fmt.Println("buffer size to small")
+				return
+			}
+			if err != io.EOF {
+				fmt.Println(err)
+				return
+			}
+    }()
 
 	logOutBox.Resize(fyne.Size{400, 1000})
 	logOutBox.Move(fyne.Position{400, 0})
