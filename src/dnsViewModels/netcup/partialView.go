@@ -1,7 +1,14 @@
 package netcup
 
 import (
+	"net/http"
+	"time"
+
+	"github.com/go-acme/lego/v4/challenge/dns01"
+
+
 	"github.com/bujuhu/lego-ui/services"
+	"github.com/bujuhu/lego-ui/config"
 	"github.com/bujuhu/lego-ui/certificateService"
 	"fyne.io/fyne/v2/layout"
 	"image/color"
@@ -42,7 +49,7 @@ func PartialView(services services.SingletonServices) *fyne.Container {
 
 		// Set provider configuration and invoke certificate generation, if Button is pressed
 		getCertButton := widget.NewButton("GetCert", func() {
-		var providerConfig = netcup.NewDefaultConfig()
+		var providerConfig = ProviderConfigFromUserConfig(services.UserConfig)
 		providerConfig.Customer = inputCustomerNumber.Text
 		providerConfig.Key = inputAPIKey.Text
 		providerConfig.Password = inputAPIPass.Text
@@ -51,4 +58,15 @@ func PartialView(services services.SingletonServices) *fyne.Container {
 	})
 
 	return container.New(layout.NewVBoxLayout(), domainName, inputDomainName, customerNumber, inputCustomerNumber, apiKey, inputAPIKey, apiPass, inputAPIPass, getCertButton)
+}
+
+func ProviderConfigFromUserConfig(userConfig config.Config ) *netcup.Config {
+	return &netcup.Config{
+		TTL: dns01.DefaultTTL,
+		PropagationTimeout: userConfig.PropagationTimeout,
+		PollingInterval: userConfig.PollingIntervall,
+		HTTPClient: &http.Client{
+			Timeout: 10*time.Second,
+		},
+	}
 }

@@ -1,6 +1,7 @@
 package config
 
 import(	
+	"time"
 	"github.com/go-acme/lego/v4/registration"
 	"crypto"
 	"crypto/ecdsa"
@@ -21,6 +22,12 @@ type Config struct {
 	
 	//Set to true, if the user accepts LetsEncrypt's TOS
 	TOSAgreed	 bool
+
+	//After how many seconds, should we cancel the DNS verification request
+	PropagationTimeout time.Duration
+
+	//What interval should we check DNS Servers, if the verification succeeded
+	PollingIntervall time.Duration
 }
 
 // Randomly generates a new private Key, which will be used for future certificates

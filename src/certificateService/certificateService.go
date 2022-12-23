@@ -32,7 +32,7 @@ func Main(services services.SingletonServices, dnsProviderConfig *netcup.Config,
 	}
 
 	//Register User with LetsEncrpt
-	reg, err := client.Registration.Register(registration.RegisterOptions{TermsOfServiceAgreed: true})
+	reg, err := client.Registration.Register(registration.RegisterOptions{TermsOfServiceAgreed: services.UserConfig.TOSAgreed})
 	if err != nil {
 		log.Print(err.Error())
 	}
