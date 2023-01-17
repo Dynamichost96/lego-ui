@@ -8,8 +8,8 @@ import (
 
 
 	"github.com/bujuhu/lego-ui/services"
-	"github.com/bujuhu/lego-ui/config"
-	"github.com/bujuhu/lego-ui/certificateService"
+	"github.com/bujuhu/lego-ui/services/configService"
+	"github.com/bujuhu/lego-ui/services/certificateService"
 	"fyne.io/fyne/v2/layout"
 	"image/color"
 

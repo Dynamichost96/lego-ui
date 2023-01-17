@@ -3,8 +3,8 @@ package main
 import (
 	"fyne.io/fyne/v2/app"
 	"github.com/bujuhu/lego-ui/view"
-	"github.com/bujuhu/lego-ui/config"
-	"github.com/bujuhu/lego-ui/userLogService"
+	"github.com/bujuhu/lego-ui/services/configService"
+	"github.com/bujuhu/lego-ui/services/userLogService"
 	"github.com/bujuhu/lego-ui/services"
 	"net/http"
 	"time"
