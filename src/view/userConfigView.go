@@ -34,5 +34,5 @@ func UserConfigView(services services.SingletonServices) *fyne.Container {
 
 	inputTOS.Checked = services.UserConfig.GetTOSAgree()
 
-	return container.New(layout.NewPaddedLayout(), container.New(layout.NewVBoxLayout(), labelEmail, inputEmail, tosText, inputTOS))
+	return container.New(layout.NewPaddedLayout(), container.New(layout.NewVBoxLayout(), Title("Settings"), labelEmail, inputEmail, tosText, inputTOS))
 }
