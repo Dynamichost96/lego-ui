@@ -17,17 +17,11 @@ var data = []string{"Cert1", "Cert2", "Cert3"}
 
 //Entrypoint of the Application
 func main() {
+	client = &http.Client{Timeout: 10 * time.Second}
+	a := app.NewWithID("at.bujuhu.legoui")
 	var services = services.SingletonServices {
-		UserConfig: config.Config {
-			Email: "you@yours.com",
-			Key:   config.NewPrivateKey(),
-			TOSAgreed: true,
-		},
+		UserConfig: config.New(a.Preferences()),
 		UserLog: userLogService.New(),
 	}
-
-	client = &http.Client{Timeout: 10 * time.Second}
-	services.UserLog.Write("test")
-	a := app.New()
 	view.New(services, data).Show(a)
 }

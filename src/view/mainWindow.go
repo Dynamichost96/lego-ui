@@ -91,9 +91,10 @@ func (mw MainWindow) Show(a fyne.App) {
 	dns1Form := container.New(layout.NewHBoxLayout(), logOutput, container.New(layout.NewVBoxLayout(), overhead, inputForm))
 	dns2Form := container.New(layout.NewHBoxLayout(), logOutput, container.New(layout.NewVBoxLayout(), overhead, inputForm))
 
+	userConfigView := container.NewTabItem("Settings", UserConfigView(mw.services))
 	tabItem1 := container.NewTabItem("DNS1", dns1Form)
 	tabItem2 := container.NewTabItem("DNS2", dns2Form)
-	tabs := container.NewAppTabs(tabItem1, tabItem2)
+	tabs := container.NewAppTabs(userConfigView, tabItem1, tabItem2)
 
 	win.SetContent(tabs)
 	win.ShowAndRun()
